@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Tracker 🎵</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+</head>
+<body>
+  <header>
+    <h1>🎶 Latest Songs (Last 48 Hours)</h1>
+    <div class="controls">
+      <button id="refreshBtn">🔄 Refresh</button>
+      <span id="lastUpdated"></span>
+    </div>
+  </header>
+
+  <main>
+    <div id="status" class="status"></div>
+    <table id="songsTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Published</th>
+          <th>URL</th>
+          <th>Created At</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
