@@ -1,6 +1,14 @@
+import os
+from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
-api_key = "AIzaSyBt_L4QwjNS6_5kgqpnzekw9YVrcY5M144"
+# Load variables from .env
+load_dotenv()
+
+# Get API key from environment
+api_key = os.getenv("YOUTUBE_API_KEY")
+
+# Initialize YouTube API client
 youtube = build("youtube", "v3", developerKey=api_key)
 
 def get_channel_id(channel_name):
@@ -16,5 +24,6 @@ def get_channel_id(channel_name):
     else:
         return None
 
-print(get_channel_id("7clouds"))   # should print UCN1hnUccO4FD5WfM7ithXaw
+# Example usage
+print(get_channel_id("7clouds"))
 
