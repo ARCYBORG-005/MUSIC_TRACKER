@@ -1,6 +1,6 @@
-// ==== Supabase Config (use ANON key here) ====
-const SUPABASE_URL = "https://qdkiqkwkdumzcaqeufmr.supabase.co";   // <-- replace
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFka2lxa3drZHVtemNhcWV1Zm1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUyMTkzNTIsImV4cCI6MjA3MDc5NTM1Mn0.PoI6-Fc5OMg0Ju-EeVMAgd_O77s2zRaJQyozq6EJh-g";                    // <-- replace
+// ==== Supabase Config (keys come from config.js) ====
+const SUPABASE_URL = SUPABASE_URL;     // defined in config.js
+const SUPABASE_ANON_KEY = SUPABASE_ANON_KEY; // defined in config.js
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -10,15 +10,14 @@ function setBackgroundForTime() {
   const hour = new Date().getHours();
   let bg;
 
-  // Morning 6-12, Afternoon 12-17, Evening 17-21, Night 21-6
   if (hour >= 6 && hour < 12) {
-    bg = "#FFF7CC"; // Morning - light warm yellow
+    bg = "#FFF7CC"; // Morning
   } else if (hour >= 12 && hour < 17) {
-    bg = "#D9EEFF"; // Afternoon - light sky blue
+    bg = "#D9EEFF"; // Afternoon
   } else if (hour >= 17 && hour < 21) {
-    bg = "#FFD6A5"; // Evening - soft orange
+    bg = "#FFD6A5"; // Evening
   } else {
-    bg = "#2C3E50"; // Night - deep blue/gray
+    bg = "#2C3E50"; // Night
   }
 
   document.body.style.backgroundColor = bg;
@@ -33,24 +32,20 @@ function renderSongs(rows) {
   rows.forEach(row => {
     const tr = document.createElement("tr");
 
-    // Title (plain text)
     const tdTitle = document.createElement("td");
     tdTitle.textContent = row.title ?? "";
     tr.appendChild(tdTitle);
 
-    // Artist
     const tdArtist = document.createElement("td");
     tdArtist.textContent = row.artist ?? "";
     tr.appendChild(tdArtist);
 
-    // Published (format nicely)
     const tdPublished = document.createElement("td");
     tdPublished.textContent = row.published
       ? new Date(row.published).toLocaleString()
       : "";
     tr.appendChild(tdPublished);
 
-    // URL (clickable if present)
     const tdUrl = document.createElement("td");
     if (row.url) {
       const a = document.createElement("a");
@@ -65,14 +60,12 @@ function renderSongs(rows) {
     }
     tr.appendChild(tdUrl);
 
-    // Created At (if present in table)
     const tdCreatedAt = document.createElement("td");
     tdCreatedAt.textContent = row.created_at
       ? new Date(row.created_at).toLocaleString()
       : "-";
     tr.appendChild(tdCreatedAt);
 
-    // ID
     const tdId = document.createElement("td");
     tdId.textContent = row.id ?? "-";
     tr.appendChild(tdId);
@@ -89,7 +82,7 @@ async function loadSongs() {
   const { data, error } = await db
     .from("song")
     .select("*")
-    .order("published", { ascending: false }); // latest first
+    .order("published", { ascending: false });
 
   if (error) {
     console.error("Error fetching songs:", error);
@@ -105,7 +98,6 @@ async function loadSongs() {
     renderSongs(data);
   }
 
-  // Show last updated time
   const lastUpdated = document.getElementById("lastUpdated");
   lastUpdated.textContent = "Last updated: " + new Date().toLocaleTimeString();
 }
@@ -115,6 +107,3 @@ document.getElementById("refreshBtn").addEventListener("click", loadSongs);
 
 // Initial load
 loadSongs();
-
-
-
