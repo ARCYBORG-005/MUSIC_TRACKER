@@ -1,0 +1,76 @@
+/* Background color changes with time are already in JS */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #222; /* dark text for good contrast */
+}
+
+h1 {
+  text-align: center;
+  color: #222; /* dark heading for clarity */
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #444; 
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #222;
+}
+
+#lastUpdated {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Table styling */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: #333; 
+  color: white;  /* white text for strong contrast */
+  font-size: 16px;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+  color: #222;  /* dark text */
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Links */
+a {
+  color: #0056d6;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: #003399;
+}
