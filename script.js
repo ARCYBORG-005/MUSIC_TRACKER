@@ -1,9 +1,8 @@
-// ==== Supabase Config (keys come from config.js) ====
-// DO NOT re-declare SUPABASE_URL or SUPABASE_ANON_KEY here
+// Supabase Config (keys come from config.js) 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ==== Background color based on time of day ====
+// Background color based on time of day 
 function setBackgroundForTime() {
   const hour = new Date().getHours();
   let bg;
@@ -22,7 +21,7 @@ function setBackgroundForTime() {
 }
 setBackgroundForTime();
 
-// ==== Render rows into table ====
+//Render rows into table 
 function renderSongs(rows) {
   const tbody = document.querySelector("#songsTable tbody");
   tbody.innerHTML = "";
@@ -72,7 +71,7 @@ function renderSongs(rows) {
   });
 }
 
-// ==== Load all songs from table ====
+//  Load all songs from table
 async function loadSongs() {
   const status = document.getElementById("status");
   status.textContent = "Loading songs...";
@@ -84,7 +83,7 @@ async function loadSongs() {
 
   if (error) {
     console.error("Error fetching songs:", error);
-    status.textContent = "⚠️ Failed to load songs.";
+    status.textContent = "Failed to load songs.";
     return;
   }
 
@@ -100,7 +99,7 @@ async function loadSongs() {
   lastUpdated.textContent = "Last updated: " + new Date().toLocaleTimeString();
 }
 
-// ==== Hook up refresh button ====
+//  Hook up refresh button 
 document.getElementById("refreshBtn").addEventListener("click", loadSongs);
 
 // Initial load
