@@ -58,13 +58,13 @@ def main():
     for channel_id, artist in artists.items():
         rows = fetch_recent_videos(channel_id, artist, published_after_iso)
         if rows:
-            print(f"✅ Fetched {len(rows)} videos for {artist}")
+            print(f" Fetched {len(rows)} videos for {artist}")
             all_rows.extend(rows)
         else:
-            print(f"⚠️ No videos found for {artist} in last 48 hours")
+            print(f" No videos found for {artist} in last 48 hours")
 
     if not all_rows:
-        print("⚠️ No songs to insert. Supabase not updated.")
+        print(" No songs to insert. Supabase not updated.")
         return
 
     try:
@@ -72,9 +72,9 @@ def main():
         supabase.table("song").delete().neq("id", 0).execute()
         # Insert ONLY the columns your table has
         resp = supabase.table("song").insert(all_rows).execute()
-        print("🎵 Inserted rows:", len(all_rows))
+        print(" Inserted rows:", len(all_rows))
     except Exception as e:
-        print("❌ Supabase error:", e)
+        print(" Supabase error:", e)
 
 if __name__ == "__main__":
     main()
