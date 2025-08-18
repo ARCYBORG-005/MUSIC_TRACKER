@@ -1,7 +1,5 @@
 // ==== Supabase Config (keys come from config.js) ====
-const SUPABASE_URL = SUPABASE_URL;     // defined in config.js
-const SUPABASE_ANON_KEY = SUPABASE_ANON_KEY; // defined in config.js
-
+// DO NOT re-declare SUPABASE_URL or SUPABASE_ANON_KEY here
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
